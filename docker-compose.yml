@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  task-manager:
+    build: .
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    volumes:
+      - nginx-logs:/var/log/nginx
+    networks:
+      - task-manager-network
+
+volumes:
+  nginx-logs:
+
+networks:
+  task-manager-network:
+    driver: bridge
